@@ -1,13 +1,13 @@
 class Player {
   constructor(ctx, keys) {
     this.ctx = ctx;
-    this.width = 128;
-    this.height = 128;
+    this.width = 32;
+    this.height = 32;
     this.gameWidth = 960;
     this.gameHeight = 640;
 
-    this.velX = 5;
-    this.velY = 5;
+    this.velX = 10;
+    this.velY = 10;
 
     this.image = new Image();
     this.image.src = "./images/player.png";
@@ -45,6 +45,7 @@ class Player {
       this.posX += this.velX;
     }
     if (this.direction.up && this.posY > 0) {
+      console.log("pepe");
       this.posY -= this.velY;
     }
     if (this.direction.down && this.posY + this.height <= this.gameHeight) {

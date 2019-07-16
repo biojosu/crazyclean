@@ -39,6 +39,7 @@ const Game = {
     this.background = new Background(this.ctx, this.width, this.height);
     this.matrix = new Matrix(this.ctx);
     this.player = new Player(this.ctx, 960, 640, this.keys);
+    //this.asteroid = new Asteroid(this.ctx);
   },
 
   moveAll: function() {
@@ -49,6 +50,7 @@ const Game = {
     this.background.draw();
     this.matrix.draw();
     this.player.draw();
+    //this.asteroid.draw();
   },
 
   clear: function() {
