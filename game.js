@@ -31,13 +31,18 @@ const Game = {
     setInterval(() => {
       this.clear();
       this.drawAll();
-    }, 1000 / 60);
+      this.moveAll();
+    }, 1000 / this.fps);
   },
 
   reset: function() {
     this.background = new Background(this.ctx, this.width, this.height);
     this.matrix = new Matrix(this.ctx);
     this.player = new Player(this.ctx, 960, 640, this.keys);
+  },
+
+  moveAll: function() {
+    this.player.move();
   },
 
   drawAll: function() {
