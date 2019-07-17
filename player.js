@@ -26,9 +26,6 @@ class Player {
       frameX: 15
     };
 
-    this.posX = 0; //this.gameWidth / 2 - this.width / 2;
-    this.posY = 0; //this.gameHeight - this.height;
-
     this.setEventListeners();
     console.log(this.matrix);
   }
@@ -82,27 +79,6 @@ class Player {
       this.matrix.board[indexY + 1][indexX] = "P";
     }
   }
-
-  // if (this.direction.down && this.posY + this.height <= this.gameHeight) {
-  //   this.posY += this.velY;
-  //   for (let i = 0; i < this.board.length; i++) {
-  //     let row = this.board[i];
-  //     for (let j = 0; j < row.length; j++) {
-  //       let column = row[j];
-  //       if (column === "P") {
-  //         column = "1";
-  //         this.nextStep = row[i - 1];
-  //         this.nextStep = "P";
-
-  //         this.playerInitialPosition = i + "," + j;
-  //         this.travelInitial.push(this.playerInitialPosition);
-
-  //         this.playerFinalPosition = i - 1 + "," + j;
-  //         this.travelFinal.push(this.playerInitialPosition);
-  //       }
-  //     }
-  //   }
-  // }
 
   setEventListeners() {
     addEventListener("keydown", e => {

@@ -38,19 +38,26 @@ const Game = {
   reset: function() {
     this.background = new Background(this.ctx, this.width, this.height);
     this.matrix = new Matrix(this.ctx);
-    this.player = new Player(this.ctx, 960, 640, this.keys, this.matrix);
-    //this.asteroid = new Asteroid(this.ctx);
+    this.player = new Player(
+      this.ctx,
+      this.canvas.width,
+      this.canvas.height,
+      this.keys,
+      this.matrix
+    );
+    this.asteroid = new Asteroid(this.ctx);
   },
 
   moveAll: function() {
     this.player.move();
+    this.asteroid.move();
   },
 
   drawAll: function() {
     this.background.draw();
     this.matrix.draw();
     this.player.draw();
-    //this.asteroid.draw();
+    this.asteroid.draw();
   },
 
   clear: function() {

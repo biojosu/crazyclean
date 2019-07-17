@@ -2,15 +2,18 @@ class Asteroid {
   constructor(ctx) {
     this.ctx = ctx;
     this.width = 192;
-    this.height = 128;
+    this.height = 160;
     this.gameWidth = 960;
     this.gameHeight = 640;
 
     this.image = new Image();
     this.image.src = "./images/ast1.png";
 
-    this.posX = 500;
-    this.posY = 500;
+    this.posX = this.gameWidth / 2;
+    this.posY = this.gameHeight / 2;
+
+    this.velX = 5;
+    this.velY = 5;
   }
 
   draw() {
@@ -21,5 +24,10 @@ class Asteroid {
       this.width,
       this.height
     );
+  }
+
+  move() {
+    this.posX += this.velX;
+    this.posY += this.velY;
   }
 }
