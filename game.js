@@ -38,7 +38,7 @@ const Game = {
   reset: function() {
     this.background = new Background(this.ctx, this.width, this.height);
     this.matrix = new Matrix(this.ctx);
-    this.player = new Player(this.ctx, 960, 640, this.keys);
+    this.player = new Player(this.ctx, 960, 640, this.keys, this.matrix);
     //this.asteroid = new Asteroid(this.ctx);
   },
 
