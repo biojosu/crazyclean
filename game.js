@@ -45,12 +45,14 @@ const Game = {
       this.keys,
       this.matrix
     );
-    this.asteroid = new Asteroid(this.ctx);
+    this.asteroid = new Asteroid(this.ctx, "./images/ast1.png");
+    this.asteroid2 = new Asteroid(this.ctx, "./images/ast3.png");
   },
 
   moveAll: function() {
     this.player.move();
     this.asteroid.move();
+    this.asteroid2.move();
   },
 
   drawAll: function() {
@@ -58,6 +60,7 @@ const Game = {
     this.matrix.draw();
     this.player.draw();
     this.asteroid.draw();
+    this.asteroid2.draw();
   },
 
   clear: function() {

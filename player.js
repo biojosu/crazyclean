@@ -1,8 +1,8 @@
 class Player {
   constructor(ctx, gameWidth, gameHeight, keys, matrix) {
     this.ctx = ctx;
-    this.width = 32;
-    this.height = 32;
+    this.width = 40;
+    this.height = 40;
     this.gameWidth = gameWidth;
     this.gameHeight = gameHeight;
 
