@@ -1,5 +1,5 @@
 class Asteroid {
-  constructor(ctx, gameWidth, gameHeight, player) {
+  constructor(ctx, gameWidth, gameHeight, player, matrix) {
     this.ctx = ctx;
     this.width = 32;
     this.height = 32;
@@ -7,6 +7,7 @@ class Asteroid {
     this.gameHeight = gameHeight;
 
     this.player = player;
+    this.matrix = matrix;
 
     this.image = new Image();
     this.image.src = "./images/ast1.png";
