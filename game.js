@@ -9,10 +9,10 @@ const Game = {
   height: undefined,
   fps: 60,
   keys: {
-    ARROW_UP: 38,
-    ARROW_DOWN: 40,
-    ARROW_RIGHT: 39,
-    ARROW_LEFT: 37
+    ARROW_UP: 73,
+    ARROW_DOWN: 75,
+    ARROW_RIGHT: 76,
+    ARROW_LEFT: 74
   },
 
   init: function() {
@@ -45,14 +45,17 @@ const Game = {
       this.keys,
       this.matrix
     );
-    this.asteroid = new Asteroid(this.ctx, "./images/ast1.png");
-    this.asteroid2 = new Asteroid(this.ctx, "./images/ast3.png");
+    this.asteroid = new Asteroid(
+      this.ctx,
+      this.canvas.width,
+      this.canvas.height,
+      this.player
+    );
   },
 
   moveAll: function() {
     this.player.move();
     this.asteroid.move();
-    this.asteroid2.move();
   },
 
   drawAll: function() {
@@ -60,10 +63,25 @@ const Game = {
     this.matrix.draw();
     this.player.draw();
     this.asteroid.draw();
-    this.asteroid2.draw();
   },
 
   clear: function() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  },
+
+  /*isCollision: function() {
+    if (
+      this.player.position.frameX + this.player.width >= this.asteroid.posX &&
+      this.player.position.frameY + this.player.height >= this.asteroid.posY &&
+      this.player.position.frameX <= this.asteroid.posX + this.asteroid.width &&
+      this.player.position.frameY <= this.asteroid.posY + this.asteroid.height
+    ) {
+      this.gameOver();
+    }
+    // });
+  },*/
+
+  gameOver: function() {
+    clearInterval(this.interval);
   }
 };

@@ -6,8 +6,8 @@ class Player {
     this.gameWidth = gameWidth;
     this.gameHeight = gameHeight;
 
-    this.velX = 5;
-    this.velY = 5;
+    this.velX = 1;
+    this.velY = 1;
 
     this.image = new Image();
     this.image.src = "./images/player.png";

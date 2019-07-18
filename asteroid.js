@@ -1,47 +1,50 @@
 class Asteroid {
-  constructor(ctx, src) {
+  constructor(ctx, gameWidth, gameHeight, player) {
     this.ctx = ctx;
-    this.width = 192;
-    this.height = 192;
-    this.gameWidth = 960;
-    this.gameHeight = 640;
+    this.width = 32;
+    this.height = 32;
+    this.gameWidth = gameWidth;
+    this.gameHeight = gameHeight;
+
+    this.player = player;
 
     this.image = new Image();
-    this.image.src = src;
+    this.image.src = "./images/ast1.png";
 
-    this.posX = this.gameWidth / 2;
-    this.posY = this.gameHeight / 2;
+    this.velX = 0.1;
+    this.velY = 0.1;
 
-    this.velX = 5;
-    this.velY = 5;
+    this.position = {
+      coord: "N",
+      frameY: 10,
+      frameX: 15
+    };
   }
 
   draw() {
     this.ctx.drawImage(
       this.image,
-      this.posX,
-      this.posY,
+      this.position.frameX * Math.floor(this.gameWidth / 30),
+      this.position.frameY * Math.floor(this.gameHeight / 20),
       this.width,
       this.height
     );
   }
 
   move() {
-    this.posX += this.velX;
-    this.posY += this.velY;
+    this.position.frameX += this.velX;
+    this.position.frameY += this.velY;
 
     //colisión parte superior de la pantalla
-    if (this.posY < 0) {
+    if (this.position.frameY > 0) {
       this.velY = -this.velY;
     }
-    //colisión parte inferior de la pantall
-    if (this.posY + this.height > this.gameHeight) {
+    //colisión parte inferior de la pantalla
+    if (this.position.frameY <= 19) {
       this.velY = -this.velY;
     }
     //colisiones laterales
-
-    if (this.posX + this.width > this.gameWidth || this.posX < 0) {
-      this.velX = -this.velX;
-    }
+    if (this.position.frameX > 0) this.velX = -this.velX;
+    if (this.position.frameX <= 29) this.velX = -this.velX;
   }
 }
