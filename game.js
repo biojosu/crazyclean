@@ -7,7 +7,7 @@ const Game = {
   ctx: undefined,
   width: undefined,
   height: undefined,
-  fps: 60,
+  fps: 30,
   keys: {
     ARROW_UP: 73,
     ARROW_DOWN: 75,
@@ -30,8 +30,10 @@ const Game = {
 
     setInterval(() => {
       this.clear();
-      this.drawAll();
       this.moveAll();
+      this.drawAll();
+      this.isCollision();
+      this.gameWin();
     }, 1000 / this.fps);
   },
 
@@ -49,7 +51,8 @@ const Game = {
       this.ctx,
       this.canvas.width,
       this.canvas.height,
-      this.player
+      this.player,
+      this.matrix
     );
   },
 
@@ -81,7 +84,46 @@ const Game = {
     // });
   },*/
 
+  isCollision: function() {
+    if (
+      this.player.position.frameX * Math.floor(this.width / 30) +
+        this.player.width -
+        100 >=
+        this.asteroid.position.frameX * Math.floor(this.width / 30) &&
+      this.player.position.frameX * Math.floor(this.width / 30) <=
+        this.asteroid.position.frameX * Math.floor(this.width / 30) +
+          this.asteroid.width -
+          50 &&
+      this.player.position.frameY * Math.floor(this.height / 20) +
+        this.player.height +
+        80 >=
+        this.asteroid.position.frameY * Math.floor(this.height / 20) &&
+      this.player.position.frameY * Math.floor(this.height / 20) <=
+        this.asteroid.position.frameY * Math.floor(this.height / 20) +
+          this.asteroid.height -
+          40
+    ) {
+      this.gameOver();
+    }
+  },
+
+  gameWin: function() {
+    if (this.matrix.board !== "0") {
+      clearInterval(this.interval);
+      this.ctx.font = "bold 80px verdana";
+      this.ctx.fillText("Acabas de ganar", this.width / 2, this.height / 2);
+    }
+  },
+
+  //clearAll: function() {
+  // this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  // },
+
   gameOver: function() {
-    clearInterval(this.interval);
+    clearInterval(this.Interval);
+    this.clear();
+    this.ctx.font = "bold 80px verdana";
+    this.ctx.fillText("Game Over", 480, 320);
+    this.matrix.board = undefined;
   }
 };

@@ -49,7 +49,18 @@ class Matrix{
               this.width,
               this.height)
               break;
+
+          case "A":
+            this.ctx.drawImage(this.image,
+              32 * j,
+              32 * i,
+              this.width,
+              this.height)
+            break;
+
+
             }
+            
             
       }
     }
