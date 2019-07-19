@@ -84,18 +84,23 @@ class Player {
     addEventListener("keydown", e => {
       switch (e.keyCode) {
         case this.keys.ARROW_LEFT:
+          document.getElementById("move").play();
+
           this.direction.left = true;
           this.position.coord = "O";
           break;
         case this.keys.ARROW_RIGHT:
+          document.getElementById("move").play();
           this.direction.right = true;
           this.position.coord = "E";
           break;
         case this.keys.ARROW_UP:
+          document.getElementById("move").play();
           this.direction.up = true;
           this.position.coord = "N";
           break;
         case this.keys.ARROW_DOWN:
+          document.getElementById("move").play();
           this.direction.down = true;
           this.position.coord = "S";
           break;

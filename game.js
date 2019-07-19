@@ -8,12 +8,14 @@ const Game = {
   width: undefined,
   height: undefined,
   fps: 30,
+  trigger: false,
   keys: {
     ARROW_UP: 73,
     ARROW_DOWN: 75,
     ARROW_RIGHT: 76,
     ARROW_LEFT: 74
   },
+  sum: 0,
 
   init: function() {
     this.canvas = document.getElementById("canvas");
@@ -27,18 +29,31 @@ const Game = {
 
   start: function() {
     this.reset();
-
-    setInterval(() => {
+    this.precomprobacion();
+    this.interval = setInterval(() => {
       this.clear();
       this.moveAll();
       this.drawAll();
       this.isCollision();
-      this.gameWin();
+
+      if (this.comprobacion()) {
+        console.log("blaaaaa");
+
+        // alert("holaa");
+      } else {
+        console.log(this.matrix.board);
+        console.log("loool");
+      }
     }, 1000 / this.fps);
   },
 
   reset: function() {
-    this.background = new Background(this.ctx, this.width, this.height);
+    this.background = new Background(
+      this.ctx,
+      this.width,
+      this.height,
+      "./images/bg.png"
+    );
     this.matrix = new Matrix(this.ctx);
     this.player = new Player(
       this.ctx,
@@ -53,6 +68,12 @@ const Game = {
       this.canvas.height,
       this.player,
       this.matrix
+    );
+    this.background2 = new Background(
+      this.ctx,
+      this.width,
+      this.height,
+      "./images/gameOVer.png"
     );
   },
 
@@ -103,6 +124,7 @@ const Game = {
           this.asteroid.height -
           40
     ) {
+      document.getElementById("gameover").play();
       this.gameOver();
     }
   },
@@ -110,20 +132,42 @@ const Game = {
   gameWin: function() {
     if (this.matrix.board !== "0") {
       clearInterval(this.interval);
-      this.ctx.font = "bold 80px verdana";
-      this.ctx.fillText("Acabas de ganar", this.width / 2, this.height / 2);
     }
   },
 
-  //clearAll: function() {
-  // this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-  // },
-
   gameOver: function() {
-    clearInterval(this.Interval);
+    clearInterval(this.interval);
     this.clear();
-    this.ctx.font = "bold 80px verdana";
-    this.ctx.fillText("Game Over", 480, 320);
-    this.matrix.board = undefined;
+    this.background2.draw();
+  },
+
+  precomprobacion: function() {
+    this.event = document.getElementById("start-button").onclick = function() {
+      this.trigger = true;
+    };
+  },
+
+  comprobacion: function() {
+    return this.matrix.board.every(row => {
+      return row.every(casilla => {
+        console.log(casilla);
+        casilla !== "0";
+      });
+    });
+    // else {
+    //   // {
+    //   //   console.log("ganas");
+    //   // }
+    //   console.log("pierdes");
+    // }
+    // if (this.trigger == true) {
+    //   for (let i = 0; i < this.matrix.board.length; i++) {
+    //     let row = this.matrix.board[i];
+    //     for (let j = 0; j < row.length; j++) {
+    //       if (row[j] !== "0") {
+    //         console.log("eo");
+    //       }
+    //     }
+    //   }
   }
 };
